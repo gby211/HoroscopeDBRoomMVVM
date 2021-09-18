@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/horoscopeList">
+
+    <fragment
+        android:id="@+id/horoscopeList"
+        android:name="com.example.horoscopedbroommvvm.Presentation.View.HoroscopeList"
+        android:label="fragment_horoscope_list"
+        tools:layout="@layout/fragment_horoscope_list" >
+        <action
+            android:id="@+id/action_horoscopeList_to_addHoroscopeData"
+            app:destination="@id/addHoroscopeData"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/addHoroscopeData"
+        android:name="com.example.horoscopedbroommvvm.Presentation.View.AddHoroscopeData"
+        android:label="fragment_add_horoscope_data"
+        tools:layout="@layout/fragment_add_horoscope_data" />
+</navigation>
