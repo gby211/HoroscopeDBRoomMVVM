@@ -58,7 +58,6 @@
             android:ems="10"
 
             android:hint="Введите дату"
-            android:inputType="date"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/back_button" />
