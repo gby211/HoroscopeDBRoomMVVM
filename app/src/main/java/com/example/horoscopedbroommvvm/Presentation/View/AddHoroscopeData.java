@@ -77,4 +77,9 @@ public class AddHoroscopeData extends Fragment {
         });
         return mView;
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mViewModel = null;
+    }
 }

@@ -94,4 +94,9 @@ public class HoroscopeList extends Fragment {
             recyclerView.setAdapter(new HoroscopeRVAdapter(horoscopeList));
         });
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mViewModel = null;
+    }
 }

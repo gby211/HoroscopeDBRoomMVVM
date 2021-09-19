@@ -83,4 +83,9 @@ public class UpdateFragment extends Fragment {
 
         return mView;
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mViewModel = null;
+    }
 }
