@@ -76,9 +76,6 @@ public class AddHoroscopeData extends Fragment {
                 }
             }
         });
-
-
-
         return mView;
     }
 }
