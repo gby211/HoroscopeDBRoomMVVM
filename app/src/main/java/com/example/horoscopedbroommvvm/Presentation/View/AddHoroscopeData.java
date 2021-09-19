@@ -3,15 +3,18 @@ package com.example.horoscopedbroommvvm.Presentation.View;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.horoscopedbroommvvm.R;
 
 public class AddHoroscopeData extends Fragment {
 
+    private View mView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,15 @@ public class AddHoroscopeData extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mView = inflater.inflate(R.layout.fragment_add_horoscope_data, container, false);
 
-        return inflater.inflate(R.layout.fragment_add_horoscope_data, container, false);
+        ImageButton bck = mView.findViewById(R.id.back_button);
+        bck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).popBackStack();
+            }
+        });
+        return mView;
     }
 }

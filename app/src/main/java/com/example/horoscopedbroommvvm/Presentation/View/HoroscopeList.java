@@ -30,7 +30,7 @@ public class HoroscopeList extends Fragment {
     private View mView;
     RecyclerView recyclerView1;
     FloatingActionButton fab;
-    Button btn;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,16 +38,7 @@ public class HoroscopeList extends Fragment {
 
         recyclerView1 = mView.findViewById(R.id.HoroscopeRecyclerView);
         fab = mView.findViewById(R.id.fab);
-        btn = mView.findViewById(R.id.btn);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                TextView tx = mView.findViewById(R.id.textView);
-                tx.setText("mView.findViewById(R.id.textView);mView.findViewById(R.id.textView);mView.findViewById(R.id.textView);mView.findViewById(R.id.textView);mView.findViewById(R.id.textView);");
-            }
-        });
         fab.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_horoscopeList_to_addHoroscopeData));
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
         return mView;
