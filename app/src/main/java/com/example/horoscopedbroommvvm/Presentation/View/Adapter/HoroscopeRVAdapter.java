@@ -46,6 +46,7 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
         return horoscopeDTOS.size();
     }
 
+
     public List<HoroscopeDTO> getData() {
         return horoscopeDTOS;
     }

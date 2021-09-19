@@ -16,10 +16,21 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_horoscopeList_to_updateFragment"
+            app:destination="@id/updateFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/addHoroscopeData"
         android:name="com.example.horoscopedbroommvvm.Presentation.View.AddHoroscopeData"
         android:label="fragment_add_horoscope_data"
         tools:layout="@layout/fragment_add_horoscope_data" />
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.horoscopedbroommvvm.Presentation.View.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" />
 </navigation>

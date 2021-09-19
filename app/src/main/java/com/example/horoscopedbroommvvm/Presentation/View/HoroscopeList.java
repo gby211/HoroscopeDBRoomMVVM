@@ -2,11 +2,13 @@ package com.example.horoscopedbroommvvm.Presentation.View;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +43,22 @@ public class HoroscopeList extends Fragment {
 
         fab.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_horoscopeList_to_addHoroscopeData));
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                mViewModel.delete(((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position));
+            }
+        }).attachToRecyclerView(recyclerView1);
+
+
         return mView;
     }
 
