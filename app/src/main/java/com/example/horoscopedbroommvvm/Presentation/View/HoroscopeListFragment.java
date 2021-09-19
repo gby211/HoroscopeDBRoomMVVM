@@ -27,7 +27,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class HoroscopeList extends Fragment {
+public class HoroscopeListFragment extends Fragment {
 
     private HoroscopeViewModel mViewModel;
     private View mView;

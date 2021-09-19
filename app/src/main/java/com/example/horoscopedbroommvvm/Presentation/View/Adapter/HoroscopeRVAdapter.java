@@ -22,7 +22,6 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
 
     public HoroscopeRVAdapter(List<HoroscopeDTO> horoscopeDTOS) {
         this.horoscopeDTOS = horoscopeDTOS;
-
     }
 
     @NonNull
@@ -55,7 +54,6 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
         private TextView textViewZodiac;
         private TextView textViewDate;
         private TextView textViewInfo;
-
 
         public HoroscopeViewHolder(@NonNull View itemView) {
             super(itemView);

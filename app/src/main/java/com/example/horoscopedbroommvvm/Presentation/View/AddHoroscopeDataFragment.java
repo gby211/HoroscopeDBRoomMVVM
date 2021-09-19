@@ -19,7 +19,7 @@ import com.example.horoscopedbroommvvm.Presentation.ViewModel.HoroscopeViewModel
 import com.example.horoscopedbroommvvm.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AddHoroscopeData extends Fragment {
+public class AddHoroscopeDataFragment extends Fragment {
 
     HoroscopeViewModel mViewModel;
     private View mView;
