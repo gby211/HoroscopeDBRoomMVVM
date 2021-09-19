@@ -25,7 +25,17 @@ public class HoroscopeViewModel extends AndroidViewModel {
         mAllData = mHoroscopeRepository.getAllData();
     }
 
+
+
     public LiveData<List<HoroscopeDTO>> getAllData() {return mAllData;}
 
     public void insert(HoroscopeDTO horoscopeDTO) { mHoroscopeRepository.addHoroscopeData(horoscopeDTO); }
+
+    public void insert(String date, String zodiac, String info) {
+        HoroscopeDTO DTO = new HoroscopeDTO();
+        DTO.setDate(date);
+        DTO.setZodiac(zodiac);
+        DTO.setInfo(info);
+        insert(DTO);
+    }
 }
