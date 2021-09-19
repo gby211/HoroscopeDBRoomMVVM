@@ -20,6 +20,11 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
 
     private List<HoroscopeDTO> horoscopeDTOS = new ArrayList<>();
 
+    public HoroscopeRVAdapter(List<HoroscopeDTO> horoscopeDTOS) {
+        this.horoscopeDTOS = horoscopeDTOS;
+
+    }
+
     @NonNull
     @NotNull
     @Override
