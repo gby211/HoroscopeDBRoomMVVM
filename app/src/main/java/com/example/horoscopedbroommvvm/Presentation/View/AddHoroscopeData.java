@@ -29,8 +29,6 @@ public class AddHoroscopeData extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -44,11 +42,11 @@ public class AddHoroscopeData extends Fragment {
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_add_horoscope_data, container, false);
 
-        bck = mView.findViewById(R.id.back_button1);
+        bck = mView.findViewById(R.id.back_button);
         fab = mView.findViewById(R.id.fab);
-        editTextDate = mView.findViewById(R.id.editTextTextPersonName11);
-        editTextZodiac = mView.findViewById(R.id.editTextTextPersonName21);
-        editTextInfo = mView.findViewById(R.id.editTextTextPersonName31);
+        editTextDate = mView.findViewById(R.id.editTextTextPersonName1);
+        editTextZodiac = mView.findViewById(R.id.editTextTextPersonName2);
+        editTextInfo = mView.findViewById(R.id.editTextTextPersonName3);
 
         bck.setOnClickListener(new View.OnClickListener() {
 

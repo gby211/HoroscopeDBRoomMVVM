@@ -36,5 +36,11 @@ public class HoroscopeRepository {
         });
     }
 
+    public void updateData(HoroscopeDTO horoscopeDTO){
+        HoroscopeDatabase.databaseWriteExecutor.execute(() -> {
+            mHoroscopeDAO.update1(horoscopeDTO);
+        });
+    }
+
 
 }

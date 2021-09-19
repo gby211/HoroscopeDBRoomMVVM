@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,10 +45,11 @@ public class HoroscopeList extends Fragment {
         fab.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_horoscopeList_to_addHoroscopeData));
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView,
-                                  @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
@@ -55,6 +57,25 @@ public class HoroscopeList extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 mViewModel.delete(((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position));
+            }
+        }).attachToRecyclerView(recyclerView1);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                NavController navController = Navigation.findNavController(getActivity(),
+                        R.id.nav_host_fragment);
+                Bundle bundle = new Bundle();
+                bundle.putInt("id",((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getId());
+                navController.navigate(R.id.action_horoscopeList_to_updateFragment, bundle);
             }
         }).attachToRecyclerView(recyclerView1);
 
@@ -67,7 +88,8 @@ public class HoroscopeList extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(HoroscopeViewModel.class);
 
-        mViewModel.getAllData().observe(getViewLifecycleOwner(),(List<HoroscopeDTO> horoscopeList)->{
+        mViewModel.getAllData().observe(getViewLifecycleOwner(),
+                (List<HoroscopeDTO> horoscopeList) -> {
             RecyclerView recyclerView = mView.findViewById(R.id.HoroscopeRecyclerView);
             recyclerView.setAdapter(new HoroscopeRVAdapter(horoscopeList));
         });

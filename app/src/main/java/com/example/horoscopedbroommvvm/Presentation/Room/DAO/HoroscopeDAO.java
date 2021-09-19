@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.horoscopedbroommvvm.Presentation.Model.HoroscopeDTO;
 
@@ -22,5 +24,8 @@ public interface HoroscopeDAO {
 
     @Query("SELECT * FROM myTable")
     LiveData<List<HoroscopeDTO>> getAllData();
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void update1(HoroscopeDTO info);
 
 }

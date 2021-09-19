@@ -34,10 +34,10 @@
             app:layout_anchorGravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName31" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName31"
+            android:id="@+id/editTextTextPersonName3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -47,10 +47,10 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName21" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName11"
+            android:id="@+id/editTextTextPersonName1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -60,10 +60,10 @@
             android:hint="Введите дату"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/back_button1" />
+            app:layout_constraintTop_toBottomOf="@+id/back_button" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName21"
+            android:id="@+id/editTextTextPersonName2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -73,10 +73,10 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName11" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName1" />
 
         <ImageButton
-            android:id="@+id/back_button1"
+            android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"

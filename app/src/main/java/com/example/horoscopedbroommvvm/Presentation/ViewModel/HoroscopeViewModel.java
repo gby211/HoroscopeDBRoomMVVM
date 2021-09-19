@@ -39,7 +39,21 @@ public class HoroscopeViewModel extends AndroidViewModel {
         insert(DTO);
     }
 
+
     public void delete(HoroscopeDTO dto){
         mHoroscopeRepository.deleteHoroscopeData(dto);
+    }
+
+    public void update(HoroscopeDTO dto){
+        mHoroscopeRepository.updateData(dto);
+    }
+
+    public void update1(int id, String date, String zodiac, String info){
+        HoroscopeDTO DTO = new HoroscopeDTO();
+        DTO.setId(id);
+        DTO.setDate(date);
+        DTO.setZodiac(zodiac);
+        DTO.setInfo(info);
+        update(DTO);
     }
 }
