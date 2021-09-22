@@ -52,7 +52,7 @@ public class HoroscopeListFragment extends Fragment {
                                   @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
-
+    //TODO слить методы
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();

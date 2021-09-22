@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.horoscopedbroommvvm.Presentation.Model.HoroscopeDTO;
@@ -34,6 +36,8 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull HoroscopeViewHolder holder, int position) {
+        holder.cardView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_horoscopeList_to_horoscopeInfoFragment));
+
         HoroscopeDTO DTO = horoscopeDTOS.get(position);
         holder.textViewDate.setText(DTO.getDate());
         holder.textViewZodiac.setText(DTO.getZodiac());
@@ -54,9 +58,11 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
         private TextView textViewZodiac;
         private TextView textViewDate;
         private TextView textViewInfo;
+        private CardView cardView;
 
         public HoroscopeViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.cardRV);
             textViewZodiac = itemView.findViewById(R.id.textViewZodiac);
             textViewDate = itemView.findViewById(R.id.textViewDate);
             textViewInfo = itemView.findViewById(R.id.textViewInfo);

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:fitsSystemWindows="true">
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/orange"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
+
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/app_bar_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+
+                android:src="@android:drawable/sym_def_app_icon"
+                app:layout_collapseMode="parallax" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+                <ImageButton
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="#00FFFFFF"
+                    android:minHeight="48dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    app:layout_anchorGravity="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewNameZodiac_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_horizontal"
+                android:text="Zodiac"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textViewDate_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_horizontal"
+                android:text="Date"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/textViewMiniInfo_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="MinInfowrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_content"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textViewMaxInfo_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginEnd="16dp"
+                android:text="MaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfo"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
