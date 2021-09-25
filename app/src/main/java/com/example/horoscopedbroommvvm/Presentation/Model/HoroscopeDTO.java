@@ -1,6 +1,7 @@
 package com.example.horoscopedbroommvvm.Presentation.Model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,6 +9,7 @@ import androidx.room.PrimaryKey;
 public class HoroscopeDTO {
     @NonNull
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     public int id;
 
     public String date;

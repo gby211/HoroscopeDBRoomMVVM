@@ -1,5 +1,7 @@
 package com.example.horoscopedbroommvvm.Presentation.View.Adapter;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +24,11 @@ import java.util.List;
 public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.HoroscopeViewHolder> {
 
     private List<HoroscopeDTO> horoscopeDTOS = new ArrayList<>();
+    private Context context;
 
-    public HoroscopeRVAdapter(List<HoroscopeDTO> horoscopeDTOS) {
+    public HoroscopeRVAdapter(List<HoroscopeDTO> horoscopeDTOS,Context context) {
         this.horoscopeDTOS = horoscopeDTOS;
+        this.context = context;
     }
 
     @NonNull
@@ -36,9 +40,19 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HoroscopeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HoroscopeViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Bundle bundle = new Bundle();
         bundle.putInt("id",horoscopeDTOS.get(position).getId());
+        /*holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, infoActivity.class);
+                intent.putExtra("id",horoscopeDTOS.get(position).getId());
+                context.startActivity(intent);
+            }
+        });*/
+
+        //TODO
         holder.cardView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_horoscopeList_to_horoscopeInfoFragment, bundle));
 
         HoroscopeDTO DTO = horoscopeDTOS.get(position);

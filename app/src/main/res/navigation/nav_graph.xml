@@ -10,6 +10,9 @@
         android:name="com.example.horoscopedbroommvvm.Presentation.View.HoroscopeListFragment"
         android:label="fragment_horoscope_list"
         tools:layout="@layout/fragment_horoscope_list" >
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="https://pepa.pepiga_company/{id}" />
         <action
             android:id="@+id/action_horoscopeList_to_addHoroscopeData"
             app:destination="@id/addHoroscopeData"
@@ -40,5 +43,14 @@
         android:id="@+id/horoscopeInfoFragment"
         android:name="com.example.horoscopedbroommvvm.Presentation.View.HoroscopeInfoFragment"
         android:label="HoroscopeInfoFragment"
-        tools:layout="@layout/fragment_horoscope_info"/>
+        tools:layout="@layout/fragment_horoscope_info">
+
+        <action
+            android:id="@+id/action_horoscopeInfoFragment_to_horoscopeList"
+            app:destination="@id/horoscopeList"
+            app:launchSingleTop="true"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
 </navigation>

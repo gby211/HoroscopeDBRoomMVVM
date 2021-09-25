@@ -3,6 +3,7 @@ package com.example.horoscopedbroommvvm.Presentation.Room;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.horoscopedbroommvvm.Presentation.Model.HoroscopeDTO;
 import com.example.horoscopedbroommvvm.Presentation.Room.DAO.HoroscopeDAO;
@@ -44,9 +45,9 @@ public class HoroscopeRepository {
     }
 
     public LiveData<HoroscopeDTO> getById(int id){
-        HoroscopeDatabase.databaseWriteExecutor.execute(() -> {
+//        HoroscopeDatabase.databaseWriteExecutor.execute(() -> {
             mData = mHoroscopeDAO.getById(id);
-        });
+//        });
         return mData;
     }
 

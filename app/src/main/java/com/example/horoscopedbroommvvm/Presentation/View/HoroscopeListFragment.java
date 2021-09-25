@@ -1,5 +1,6 @@
 package com.example.horoscopedbroommvvm.Presentation.View;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -83,7 +84,6 @@ public class HoroscopeListFragment extends Fragment {
             }
         }).attachToRecyclerView(recyclerView1);
 
-
         return mView;
     }
 
@@ -95,9 +95,25 @@ public class HoroscopeListFragment extends Fragment {
         mViewModel.getAllData().observe(getViewLifecycleOwner(),
                 (List<HoroscopeDTO> horoscopeList) -> {
             RecyclerView recyclerView = mView.findViewById(R.id.HoroscopeRecyclerView);
-            recyclerView.setAdapter(new HoroscopeRVAdapter(horoscopeList));
+            Context context = getContext();
+            recyclerView.setAdapter(new HoroscopeRVAdapter(horoscopeList, context ));
         });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getArguments()!= null) {
+            String idS = getArguments().getString("id");
+            int idB =Integer.parseInt(idS);
+            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+            Bundle bundle = new Bundle();
+            bundle.putInt("id", idB);
+            navController.navigate(R.id.action_horoscopeList_to_horoscopeInfoFragment, bundle);
+        }
+    }
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();
