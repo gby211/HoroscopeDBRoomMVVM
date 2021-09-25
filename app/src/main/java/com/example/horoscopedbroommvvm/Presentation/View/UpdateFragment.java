@@ -27,11 +27,11 @@ public class UpdateFragment extends Fragment {
     ImageButton bck;
     EditText editTextDate,editTextZodiac, editTextInfo;
     int id;
+    String inf, date, zod;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
 
@@ -47,12 +47,21 @@ public class UpdateFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_update, container, false);
 
         id = getArguments().getInt("id");
+        zod = getArguments().getString("zod");
+        inf = getArguments().getString("inf");
+        date = getArguments().getString("date");
+
+
+
 
         bck = mView.findViewById(R.id.back_button1);
         fab = mView.findViewById(R.id.fab1);
         editTextDate = mView.findViewById(R.id.editTextTextPersonName11);
+        editTextDate.setText(date);
         editTextZodiac = mView.findViewById(R.id.editTextTextPersonName21);
+        editTextZodiac.setText(zod);
         editTextInfo = mView.findViewById(R.id.editTextTextPersonName31);
+        editTextInfo.setText(inf);
 
 
         bck.setOnClickListener(new View.OnClickListener() {

@@ -14,6 +14,7 @@ public class HoroscopeDTO {
 
     public String zodiac;
 
+
     public String info;
 
     public int getId() {
@@ -46,5 +47,16 @@ public class HoroscopeDTO {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+
+    @Override
+    public String toString() {
+        return "HoroscopeDTO{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", zodiac='" + zodiac + '\'' +
+                ", info='" + info + '\'' +
+                '}';
     }
 }

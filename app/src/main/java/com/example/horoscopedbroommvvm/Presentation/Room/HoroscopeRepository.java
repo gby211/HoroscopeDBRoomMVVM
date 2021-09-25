@@ -13,6 +13,7 @@ public class HoroscopeRepository {
 
     private HoroscopeDAO mHoroscopeDAO;
     private LiveData<List<HoroscopeDTO>> mAllData;
+    private LiveData<HoroscopeDTO> mData;
 
     public HoroscopeRepository(Application application) {
         HoroscopeDatabase db = HoroscopeDatabase.getDatabase(application);
@@ -40,6 +41,13 @@ public class HoroscopeRepository {
         HoroscopeDatabase.databaseWriteExecutor.execute(() -> {
             mHoroscopeDAO.update1(horoscopeDTO);
         });
+    }
+
+    public LiveData<HoroscopeDTO> getById(int id){
+        HoroscopeDatabase.databaseWriteExecutor.execute(() -> {
+            mData = mHoroscopeDAO.getById(id);
+        });
+        return mData;
     }
 
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -52,7 +53,7 @@ public class HoroscopeListFragment extends Fragment {
                                   @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
-    //TODO слить методы
+
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
@@ -75,6 +76,9 @@ public class HoroscopeListFragment extends Fragment {
                         R.id.nav_host_fragment);
                 Bundle bundle = new Bundle();
                 bundle.putInt("id",((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getId());
+                bundle.putString("zod",((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getZodiac());
+                bundle.putString("inf",((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getInfo());
+                bundle.putString("date",((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getDate());
                 navController.navigate(R.id.action_horoscopeList_to_updateFragment, bundle);
             }
         }).attachToRecyclerView(recyclerView1);

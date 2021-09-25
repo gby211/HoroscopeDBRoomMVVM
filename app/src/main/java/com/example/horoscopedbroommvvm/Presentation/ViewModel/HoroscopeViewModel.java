@@ -18,7 +18,7 @@ public class HoroscopeViewModel extends AndroidViewModel {
     private HoroscopeRepository mHoroscopeRepository;
 
     private final LiveData<List<HoroscopeDTO>> mAllData;
-
+    HoroscopeDTO mData;
     public HoroscopeViewModel(Application application) {
         super(application);
         mHoroscopeRepository = new HoroscopeRepository(application);
@@ -37,6 +37,10 @@ public class HoroscopeViewModel extends AndroidViewModel {
         DTO.setZodiac(zodiac);
         DTO.setInfo(info);
         insert(DTO);
+    }
+
+    public LiveData<HoroscopeDTO> getById(int id){
+        return mHoroscopeRepository.getById(id);
     }
 
 

@@ -28,4 +28,6 @@ public interface HoroscopeDAO {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void update1(HoroscopeDTO info);
 
+    @Query("SELECT * FROM myTable WHERE id = :id")
+    LiveData<HoroscopeDTO> getById(int id);
 }

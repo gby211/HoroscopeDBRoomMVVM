@@ -1,5 +1,6 @@
 package com.example.horoscopedbroommvvm.Presentation.View.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,9 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull HoroscopeViewHolder holder, int position) {
-        holder.cardView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_horoscopeList_to_horoscopeInfoFragment));
+        Bundle bundle = new Bundle();
+        bundle.putInt("id",horoscopeDTOS.get(position).getId());
+        holder.cardView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_horoscopeList_to_horoscopeInfoFragment, bundle));
 
         HoroscopeDTO DTO = horoscopeDTOS.get(position);
         holder.textViewDate.setText(DTO.getDate());
