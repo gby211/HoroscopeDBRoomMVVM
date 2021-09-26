@@ -44,8 +44,6 @@ public class PhoneCallFragment extends Fragment {
         bundleInfo = getArguments().getString("info");
     }
 
-
-
     @SuppressLint("Range")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
