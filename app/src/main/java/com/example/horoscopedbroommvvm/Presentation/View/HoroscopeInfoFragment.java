@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.horoscopedbroommvvm.MainActivity;
@@ -85,40 +86,12 @@ public class HoroscopeInfoFragment extends Fragment {
                             fab.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    NavController navController = Navigation.findNavController(getActivity(),
+                                            R.id.nav_host_fragment);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("info",horoscopeDTO.getInfo());
+                                    navController.navigate(R.id.action_horoscopeInfoFragment_to_phoneCallFragment, bundle);
 
-                                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
-                                        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_CALENDAR},MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-                                    }
-                                    else if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED){
-
-                                        ContentResolver cr = getContext().getContentResolver();
-                                        ContentValues cv = new ContentValues();
-
-                                        Calendar startTime = Calendar.getInstance();
-                                        SimpleDateFormat formater = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
-                                        try {
-                                            startTime.setTime(formater.parse(horoscopeDTO.getDate()));
-                                        } catch (ParseException e) {
-                                            e.printStackTrace();
-                                        }
-
-
-                                        cv.put(CalendarContract.Events.TITLE, horoscopeDTO.getZodiac());
-                                        Log.d("ggs",horoscopeDTO.getZodiac());
-                                        cv.put(CalendarContract.Events.DESCRIPTION, horoscopeDTO.getInfo());
-                                        Log.d("ggs",horoscopeDTO.getInfo());
-                                        cv.put(CalendarContract.Events.DTSTART, startTime.getTimeInMillis());
-                                        Log.d("ggs",String.valueOf(startTime.getTimeInMillis()));
-                                        cv.put(CalendarContract.Events.DTEND, startTime.getTimeInMillis()+1000*120*60);
-                                        Log.d("ggs",String.valueOf(startTime.getTimeInMillis()+1000*120*60));
-                                        cv.put(CalendarContract.Events.CALENDAR_ID, 2);
-                                        cv.put(CalendarContract.Events.EVENT_TIMEZONE, Calendar.getInstance().getTimeZone().getID());
-                                        Log.d("ggs",cv.toString());
-                                        cr.insert(CalendarContract.Events.CONTENT_URI, cv);
-                                        Log.d("ggs","gssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-
-
-                                        Toast.makeText(getContext(), "Successfully added", Toast.LENGTH_SHORT).show();}
                                 }
                             });
                         });

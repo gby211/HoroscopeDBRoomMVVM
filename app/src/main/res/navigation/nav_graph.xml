@@ -62,5 +62,17 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_horoscopeInfoFragment_to_phoneCallFragment"
+            app:destination="@id/phoneCallFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
+    <fragment
+        android:id="@+id/phoneCallFragment"
+        android:name="com.example.horoscopedbroommvvm.Presentation.View.PhoneCallFragment"
+        android:label="fragment_phone_call"
+        tools:layout="@layout/fragment_phone_call" />
 </navigation>
