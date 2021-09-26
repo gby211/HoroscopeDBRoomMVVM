@@ -16,8 +16,17 @@ public class HoroscopeDTO {
 
     public String zodiac;
 
-
     public String info;
+
+//    public String fullInfo;
+//
+//    public String getFullInfo() {
+//        return fullInfo;
+//    }
+//
+//    public void setFullInfo(String fullInfo) {
+//        this.fullInfo = fullInfo;
+//    }
 
     public int getId() {
         return id;
@@ -51,7 +60,6 @@ public class HoroscopeDTO {
         this.info = info;
     }
 
-
     @Override
     public String toString() {
         return "HoroscopeDTO{" +
@@ -59,6 +67,7 @@ public class HoroscopeDTO {
                 ", date='" + date + '\'' +
                 ", zodiac='" + zodiac + '\'' +
                 ", info='" + info + '\'' +
+//                ", fullInfo='" + fullInfo + '\'' +
                 '}';
     }
 }

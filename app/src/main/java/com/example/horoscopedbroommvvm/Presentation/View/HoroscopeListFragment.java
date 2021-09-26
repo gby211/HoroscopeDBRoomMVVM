@@ -76,10 +76,14 @@ public class HoroscopeListFragment extends Fragment {
                 NavController navController = Navigation.findNavController(getActivity(),
                         R.id.nav_host_fragment);
                 Bundle bundle = new Bundle();
-                bundle.putInt("id",((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getId());
-                bundle.putString("zod",((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getZodiac());
-                bundle.putString("inf",((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getInfo());
-                bundle.putString("date",((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getDate());
+                bundle.putInt("id",
+                        ((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getId());
+                bundle.putString("zod",
+                        ((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getZodiac());
+                bundle.putString("inf",
+                        ((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getInfo());
+                bundle.putString("date",
+                        ((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getDate());
                 navController.navigate(R.id.action_horoscopeList_to_updateFragment, bundle);
             }
         }).attachToRecyclerView(recyclerView1);
@@ -94,21 +98,23 @@ public class HoroscopeListFragment extends Fragment {
 
         mViewModel.getAllData().observe(getViewLifecycleOwner(),
                 (List<HoroscopeDTO> horoscopeList) -> {
-            RecyclerView recyclerView = mView.findViewById(R.id.HoroscopeRecyclerView);
-            Context context = getContext();
-            recyclerView.setAdapter(new HoroscopeRVAdapter(horoscopeList, context ));
-        });
+                    RecyclerView recyclerView = mView.findViewById(R.id.HoroscopeRecyclerView);
+                    Context context = getContext();
+                    recyclerView.setAdapter(new HoroscopeRVAdapter(horoscopeList, context));
+                });
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (getArguments()!= null) {
+        if (getArguments() != null && !getArguments().isEmpty()) {
             String idS = getArguments().getString("id");
-            int idB =Integer.parseInt(idS);
-            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+            int idB = Integer.parseInt(idS);
+            NavController navController = Navigation.findNavController(getActivity(),
+                    R.id.nav_host_fragment);
             Bundle bundle = new Bundle();
             bundle.putInt("id", idB);
+            getArguments().clear();
             navController.navigate(R.id.action_horoscopeList_to_horoscopeInfoFragment, bundle);
         }
     }

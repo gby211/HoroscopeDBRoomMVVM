@@ -103,7 +103,6 @@ public class HoroscopeInfoFragment extends Fragment {
         bck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Navigation.findNavController(view).navigate(R.id.action_horoscopeInfoFragment_to_horoscopeList);
             }
         });
