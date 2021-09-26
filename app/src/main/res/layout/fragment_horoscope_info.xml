@@ -20,7 +20,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/orange"
+            app:contentScrim="@color/yellow1"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
             app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
 
@@ -52,6 +52,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <ImageButton
+
                     android:id="@+id/share_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,8 +126,10 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellow"
+
         android:clickable="true"
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="top|center"

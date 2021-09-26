@@ -1,16 +1,24 @@
 package com.example.horoscopedbroommvvm.Presentation.View;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
@@ -21,11 +29,20 @@ import com.example.horoscopedbroommvvm.MainActivity;
 import com.example.horoscopedbroommvvm.Presentation.Model.HoroscopeDTO;
 import com.example.horoscopedbroommvvm.Presentation.ViewModel.HoroscopeViewModel;
 import com.example.horoscopedbroommvvm.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.security.acl.Owner;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class HoroscopeInfoFragment extends Fragment {
 
+
+    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 100;
 
     HoroscopeViewModel mViewModel;
     LiveData<HoroscopeDTO> DTO;
@@ -34,6 +51,7 @@ public class HoroscopeInfoFragment extends Fragment {
     ImageButton bck,shareBtn;
     String date, info, zodiac;
     TextView tvdate, tvinfo, tvzodiac;
+    FloatingActionButton fab;
     int id;
 
     @Override
@@ -64,6 +82,45 @@ public class HoroscopeInfoFragment extends Fragment {
                             tvdate.setText(horoscopeDTO.getDate());
                             tvinfo.setText(horoscopeDTO.getInfo());
                             tvzodiac.setText(horoscopeDTO.getZodiac());
+                            fab.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+                                        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_CALENDAR},MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+                                    }
+                                    else if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED){
+
+                                        ContentResolver cr = getContext().getContentResolver();
+                                        ContentValues cv = new ContentValues();
+
+                                        Calendar startTime = Calendar.getInstance();
+                                        SimpleDateFormat formater = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH);
+                                        try {
+                                            startTime.setTime(formater.parse(horoscopeDTO.getDate()));
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                        cv.put(CalendarContract.Events.TITLE, horoscopeDTO.getZodiac());
+                                        Log.d("ggs",horoscopeDTO.getZodiac());
+                                        cv.put(CalendarContract.Events.DESCRIPTION, horoscopeDTO.getInfo());
+                                        Log.d("ggs",horoscopeDTO.getInfo());
+                                        cv.put(CalendarContract.Events.DTSTART, startTime.getTimeInMillis());
+                                        Log.d("ggs",String.valueOf(startTime.getTimeInMillis()));
+                                        cv.put(CalendarContract.Events.DTEND, startTime.getTimeInMillis()+1000*120*60);
+                                        Log.d("ggs",String.valueOf(startTime.getTimeInMillis()+1000*120*60));
+                                        cv.put(CalendarContract.Events.CALENDAR_ID, 2);
+                                        cv.put(CalendarContract.Events.EVENT_TIMEZONE, Calendar.getInstance().getTimeZone().getID());
+                                        Log.d("ggs",cv.toString());
+                                        cr.insert(CalendarContract.Events.CONTENT_URI, cv);
+                                        Log.d("ggs","gssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+
+
+                                        Toast.makeText(getContext(), "Successfully added", Toast.LENGTH_SHORT).show();}
+                                }
+                            });
                         });
 
 
@@ -87,12 +144,15 @@ public class HoroscopeInfoFragment extends Fragment {
         tvdate = mView.findViewById(R.id.textViewDate_info);
         tvinfo = mView.findViewById(R.id.textViewMiniInfo_info);
         tvzodiac = mView.findViewById(R.id.textViewNameZodiac_info);
-
-//        Log.d("ggs", "onCreateView: " + DTO.toString());
-
         shareBtn = mView.findViewById(R.id.share_button);
-
+        fab = mView.findViewById(R.id.floatingActionButton);
         bck = mView.findViewById(R.id.back_button);
+
+
+
+
+
+
         bck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
