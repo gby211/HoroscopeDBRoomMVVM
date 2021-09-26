@@ -123,5 +123,14 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:clickable="true"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="top|center"
+        app:srcCompat="@drawable/ic_baseline_event_24" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

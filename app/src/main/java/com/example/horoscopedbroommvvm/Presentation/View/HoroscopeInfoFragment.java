@@ -92,13 +92,6 @@ public class HoroscopeInfoFragment extends Fragment {
 
         shareBtn = mView.findViewById(R.id.share_button);
 
-        shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         bck = mView.findViewById(R.id.back_button);
         bck.setOnClickListener(new View.OnClickListener() {
             @Override
