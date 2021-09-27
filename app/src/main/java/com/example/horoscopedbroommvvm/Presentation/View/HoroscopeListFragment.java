@@ -84,6 +84,9 @@ public class HoroscopeListFragment extends Fragment {
                         ((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getInfo());
                 bundle.putString("date",
                         ((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getDate());
+                bundle.putString("fullInf",
+                        ((HoroscopeRVAdapter) recyclerView1.getAdapter())
+                                .getFullinfoStr(position));
                 navController.navigate(R.id.action_horoscopeList_to_updateFragment, bundle);
             }
         }).attachToRecyclerView(recyclerView1);

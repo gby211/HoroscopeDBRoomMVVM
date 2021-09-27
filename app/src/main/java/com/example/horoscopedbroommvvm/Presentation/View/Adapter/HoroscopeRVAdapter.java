@@ -43,16 +43,7 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
     public void onBindViewHolder(@NonNull HoroscopeViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Bundle bundle = new Bundle();
         bundle.putInt("id",horoscopeDTOS.get(position).getId());
-        /*holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, infoActivity.class);
-                intent.putExtra("id",horoscopeDTOS.get(position).getId());
-                context.startActivity(intent);
-            }
-        });*/
 
-        //TODO
         holder.cardView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_horoscopeList_to_horoscopeInfoFragment, bundle));
 
         HoroscopeDTO DTO = horoscopeDTOS.get(position);
@@ -84,5 +75,9 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
             textViewDate = itemView.findViewById(R.id.textViewDate);
             textViewInfo = itemView.findViewById(R.id.textViewInfo);
         }
+    }
+    public String getFullinfoStr(int id){
+        HoroscopeDTO DTO = horoscopeDTOS.get(id);
+        return DTO.getFullInfo();
     }
 }

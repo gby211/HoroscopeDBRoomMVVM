@@ -18,15 +18,15 @@ public class HoroscopeDTO {
 
     public String info;
 
-//    public String fullInfo;
-//
-//    public String getFullInfo() {
-//        return fullInfo;
-//    }
-//
-//    public void setFullInfo(String fullInfo) {
-//        this.fullInfo = fullInfo;
-//    }
+    public String fullInfo;
+
+    public String getFullInfo() {
+        return fullInfo;
+    }
+
+    public void setFullInfo(String fullInfo) {
+        this.fullInfo = fullInfo;
+    }
 
     public int getId() {
         return id;

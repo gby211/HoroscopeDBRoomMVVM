@@ -31,11 +31,12 @@ public class HoroscopeViewModel extends AndroidViewModel {
 
     public void insert(HoroscopeDTO horoscopeDTO) { mHoroscopeRepository.addHoroscopeData(horoscopeDTO); }
 
-    public void insert1(String date, String zodiac, String info) {
+    public void insert1(String date, String zodiac, String info, String fullInfo) {
         HoroscopeDTO DTO = new HoroscopeDTO();
         DTO.setDate(date);
         DTO.setZodiac(zodiac);
         DTO.setInfo(info);
+        DTO.setFullInfo(fullInfo);
         insert(DTO);
     }
 
@@ -52,12 +53,13 @@ public class HoroscopeViewModel extends AndroidViewModel {
         mHoroscopeRepository.updateData(dto);
     }
 
-    public void update1(int id, String date, String zodiac, String info){
+    public void update1(int id, String date, String zodiac, String info, String fullInfo){
         HoroscopeDTO DTO = new HoroscopeDTO();
         DTO.setId(id);
         DTO.setDate(date);
         DTO.setZodiac(zodiac);
         DTO.setInfo(info);
+        DTO.setFullInfo(fullInfo);
         update(DTO);
     }
 }

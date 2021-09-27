@@ -51,7 +51,7 @@ public class HoroscopeInfoFragment extends Fragment {
     private View mView;
     ImageButton bck,shareBtn;
     String date, info, zodiac;
-    TextView tvdate, tvinfo, tvzodiac;
+    TextView tvdate, tvinfo, tvzodiac,tvfullinfo;
     FloatingActionButton fab;
     int id;
 
@@ -83,6 +83,7 @@ public class HoroscopeInfoFragment extends Fragment {
                             tvdate.setText(horoscopeDTO.getDate());
                             tvinfo.setText(horoscopeDTO.getInfo());
                             tvzodiac.setText(horoscopeDTO.getZodiac());
+                            tvfullinfo.setText(horoscopeDTO.getFullInfo());
                             fab.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -120,11 +121,7 @@ public class HoroscopeInfoFragment extends Fragment {
         shareBtn = mView.findViewById(R.id.share_button);
         fab = mView.findViewById(R.id.floatingActionButton);
         bck = mView.findViewById(R.id.back_button);
-
-
-
-
-
+        tvfullinfo = mView.findViewById(R.id.textViewMaxInfo_info);
 
         bck.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -35,10 +35,8 @@ public class AddHoroscopeDataFragment extends Fragment {
     private View mView;
     FloatingActionButton fab;
     ImageButton bck;
-    EditText editTextDate,editTextZodiac, editTextInfo;
+    EditText editTextDate,editTextZodiac, editTextInfo,editTextFullInfo;
     private LocalDateTime time;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +59,7 @@ public class AddHoroscopeDataFragment extends Fragment {
         editTextDate = mView.findViewById(R.id.editTextTextPersonName1);
         editTextZodiac = mView.findViewById(R.id.editTextTextPersonName2);
         editTextInfo = mView.findViewById(R.id.editTextTextPersonName3);
+        editTextFullInfo = mView.findViewById(R.id.editTextTextPersonName4);
 
 
         editTextDate.setOnClickListener(new View.OnClickListener() {
@@ -102,11 +101,12 @@ public class AddHoroscopeDataFragment extends Fragment {
                 Log.d("ggs",editTextDate.getText().toString());
                 Log.d("ggs",editTextZodiac.getText().toString());
                 Log.d("ggs",editTextInfo.getText().toString());
-                if (!editTextDate.getText().toString().isEmpty() & !editTextZodiac.getText().toString().isEmpty() & !editTextInfo.getText().toString().isEmpty()) {
+                if (!editTextDate.getText().toString().isEmpty() & !editTextZodiac.getText().toString().isEmpty() & !editTextInfo.getText().toString().isEmpty() & !editTextFullInfo.getText().toString().isEmpty()) {
                     mViewModel.insert1(
                             editTextDate.getText().toString(),
                             editTextZodiac.getText().toString(),
-                            editTextInfo.getText().toString()
+                            editTextInfo.getText().toString(),
+                            editTextFullInfo.getText().toString()
                     );
 
                     Navigation.findNavController(v).popBackStack();

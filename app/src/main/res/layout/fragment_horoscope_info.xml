@@ -111,15 +111,15 @@
                 android:text="MinInfowrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_content"
                 android:textSize="20sp" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/textViewMaxInfo_info"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="16dp"-->
+            <TextView
+                android:id="@+id/textViewMaxInfo_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
 
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:text="MaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfo"-->
-<!--                android:textSize="18sp" />-->
+                android:layout_marginEnd="16dp"
+                android:text="MaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfoMaxInfo"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -133,7 +133,7 @@
         android:clickable="true"
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="top|center"
-        app:srcCompat="@drawable/ic_baseline_event_24" />
+        app:srcCompat="@drawable/ic_baseline_sms_24" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

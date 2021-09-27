@@ -112,6 +112,7 @@ public class PhoneCallFragment extends Fragment {
             listV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
+
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(phoneList.get(position), null, bundleInfo, null, null);
                     Log.d("TAG", "onItemClick: " + "=================================================================================================================================");

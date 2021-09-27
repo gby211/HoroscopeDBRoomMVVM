@@ -26,28 +26,27 @@ public class HoroscopeRepository {
         return mAllData;
     }
 
-    public void addHoroscopeData(HoroscopeDTO horoscopeDTO){
+    public void addHoroscopeData(HoroscopeDTO horoscopeDTO) {
         HoroscopeDatabase.databaseWriteExecutor.execute(() -> {
             mHoroscopeDAO.addInfo(horoscopeDTO);
         });
     }
 
-    public void deleteHoroscopeData(HoroscopeDTO horoscopeDTO){
+    public void deleteHoroscopeData(HoroscopeDTO horoscopeDTO) {
         HoroscopeDatabase.databaseWriteExecutor.execute(() -> {
             mHoroscopeDAO.deleteInfo(horoscopeDTO);
         });
     }
 
-    public void updateData(HoroscopeDTO horoscopeDTO){
+    public void updateData(HoroscopeDTO horoscopeDTO) {
         HoroscopeDatabase.databaseWriteExecutor.execute(() -> {
             mHoroscopeDAO.update1(horoscopeDTO);
         });
     }
 
-    public LiveData<HoroscopeDTO> getById(int id){
-//        HoroscopeDatabase.databaseWriteExecutor.execute(() -> {
-            mData = mHoroscopeDAO.getById(id);
-//        });
+    public LiveData<HoroscopeDTO> getById(int id) {
+        mData = mHoroscopeDAO.getById(id);
+
         return mData;
     }
 

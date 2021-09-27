@@ -36,9 +36,9 @@ public class UpdateFragment extends Fragment {
     FloatingActionButton fab;
     ImageButton bck;
     private LocalDateTime time;
-    EditText editTextDate,editTextZodiac, editTextInfo;
+    EditText editTextDate,editTextZodiac, editTextInfo,editTextFullInfo;
     int id;
-    String inf, date, zod;
+    String inf, date, zod,fullInf;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,7 @@ public class UpdateFragment extends Fragment {
         zod = getArguments().getString("zod");
         inf = getArguments().getString("inf");
         date = getArguments().getString("date");
+        fullInf = getArguments().getString("fullInf");
 
 
 
@@ -97,8 +98,12 @@ public class UpdateFragment extends Fragment {
         editTextZodiac.setText(zod);
         editTextInfo = mView.findViewById(R.id.editTextTextPersonName31);
         editTextInfo.setText(inf);
-
-
+        editTextFullInfo = mView.findViewById(R.id.textViewMaxInfo_info);
+        try {
+            editTextFullInfo.setText(fullInf);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         bck.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -116,7 +121,8 @@ public class UpdateFragment extends Fragment {
                             id,
                             editTextDate.getText().toString(),
                             editTextZodiac.getText().toString(),
-                            editTextInfo.getText().toString()
+                            editTextInfo.getText().toString(),
+                            editTextFullInfo.getText().toString()
                     );
                     Navigation.findNavController(v).popBackStack();
                 } else {
