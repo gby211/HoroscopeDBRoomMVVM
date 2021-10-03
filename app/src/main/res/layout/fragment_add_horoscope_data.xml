@@ -23,12 +23,11 @@
         app:backgroundTint="@color/orange"
         android:src="@android:drawable/ic_input_add"
         app:layout_anchor="@id/bottom_app_bar" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
 
 
         <androidx.core.widget.NestedScrollView
@@ -64,8 +63,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:focusable="false"
 
+            android:focusable="false"
             android:hint="Введите дату"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
