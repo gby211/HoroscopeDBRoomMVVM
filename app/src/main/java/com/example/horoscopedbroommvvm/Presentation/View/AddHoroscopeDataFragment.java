@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -35,7 +36,8 @@ public class AddHoroscopeDataFragment extends Fragment {
     private View mView;
     FloatingActionButton fab;
     ImageButton bck;
-    EditText editTextDate,editTextZodiac, editTextInfo,editTextFullInfo;
+    EditText editTextDate, editTextInfo,editTextFullInfo;
+    Spinner editTextZodiac;
     private LocalDateTime time;
 
     @Override
@@ -99,12 +101,12 @@ public class AddHoroscopeDataFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("ggs",editTextDate.getText().toString());
-                Log.d("ggs",editTextZodiac.getText().toString());
+                Log.d("ggs",editTextZodiac.getSelectedItem().toString());
                 Log.d("ggs",editTextInfo.getText().toString());
-                if (!editTextDate.getText().toString().isEmpty() & !editTextZodiac.getText().toString().isEmpty() & !editTextInfo.getText().toString().isEmpty() & !editTextFullInfo.getText().toString().isEmpty()) {
+                if (!editTextDate.getText().toString().isEmpty() & !editTextZodiac.getSelectedItem().toString().isEmpty() & !editTextInfo.getText().toString().isEmpty() & !editTextFullInfo.getText().toString().isEmpty()) {
                     mViewModel.insert1(
                             editTextDate.getText().toString(),
-                            editTextZodiac.getText().toString(),
+                            editTextZodiac.getSelectedItem().toString(),
                             editTextInfo.getText().toString(),
                             editTextFullInfo.getText().toString()
                     );

@@ -77,7 +77,7 @@ public class HoroscopeRVAdapter extends RecyclerView.Adapter<HoroscopeRVAdapter.
         }
     }
     public String getFullinfoStr(int id){
-        HoroscopeDTO DTO = horoscopeDTOS.get(id);
-        return DTO.getFullInfo();
+        HoroscopeDTO DTO1 = horoscopeDTOS.get(id);
+        return DTO1.getFullInfo();
     }
 }

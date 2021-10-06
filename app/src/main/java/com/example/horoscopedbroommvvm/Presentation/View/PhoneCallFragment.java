@@ -2,12 +2,16 @@ package com.example.horoscopedbroommvvm.Presentation.View;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.provider.ContactsContract;
@@ -28,7 +32,7 @@ import java.util.ArrayList;
 
 public class PhoneCallFragment extends Fragment {
 
-    ArrayList<String> nameList, phoneList,allList;
+    ArrayList<String> nameList, phoneList, allList;
     ListView listV;
     String bundleInfo;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 666;
@@ -54,12 +58,15 @@ public class PhoneCallFragment extends Fragment {
         listV = mView.findViewById(R.id.listView1);
 
 
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED ) {
-            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_CONTACTS},MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        }else if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS},MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION1);
-        }
-        else if (ActivityCompat.checkSelfPermission(getContext(),
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        } else if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.SEND_SMS},
+                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION1);
+        } else if (ActivityCompat.checkSelfPermission(getContext(),
                 Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
 
             ContentResolver cr = getActivity().getBaseContext().getContentResolver();
@@ -81,8 +88,9 @@ public class PhoneCallFragment extends Fragment {
                                 ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
                                 new String[]{id}, null);
                         while (pCur.moveToNext()) {
-                            @SuppressLint("Range") String phoneNo = pCur.getString(pCur.getColumnIndex(
-                                    ContactsContract.CommonDataKinds.Phone.NUMBER));
+                            @SuppressLint("Range") String phoneNo =
+                                    pCur.getString(pCur.getColumnIndex(
+                                            ContactsContract.CommonDataKinds.Phone.NUMBER));
                             Log.i("TAG", "Name: " + name);
                             nameList.add(name);
                             Log.i("TAG", "Phone Number: " + phoneNo);
@@ -96,8 +104,8 @@ public class PhoneCallFragment extends Fragment {
                 cur.close();
             }
             String alldata = "";
-            for (int i = 0; i < nameList.size();i++){
-                alldata = nameList.get(i) + " " + phoneList.get(i);
+            for (int i = 0; i < nameList.size(); i++) {
+                alldata = nameList.get(i) + ": " + phoneList.get(i);
                 allList.add(alldata);
             }
             Log.d("TAG", "getContactList: name " + nameList.toString());
@@ -107,18 +115,44 @@ public class PhoneCallFragment extends Fragment {
             Log.d("TAG", "getContactList: phone " + phoneList.size());
 
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, allList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                    android.R.layout.simple_list_item_1, allList);
             listV.setAdapter(adapter);
             listV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
 
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneList.get(position), null, bundleInfo, null, null);
-                    Log.d("TAG", "onItemClick: " + "=================================================================================================================================");
+                    DialogFragmentPhoneCall dialog = new DialogFragmentPhoneCall();
+                    Bundle args = new Bundle();
+                    args.putString("number",phoneList.get(position));
+                    args.putString("person",nameList.get(position));
+                    args.putString("info",bundleInfo);
+                    dialog.setArguments(args);
+                    dialog.show(getChildFragmentManager(),"phoneCallDialogChose");
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+//
+//                    builder.setTitle("Отправить sms?");
+//                    builder.setMessage("Отправит sms на номер" + phoneList.get(position));
+//                    builder.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                            SmsManager smsManager = SmsManager.getDefault();
+//                            smsManager.sendTextMessage(phoneList.get(position), null, bundleInfo,
+//                                    null, null);
+//                            Log.d("TAG", "onItemClick: " + "========================");
+//                            Toast.makeText(getActivity(), "SMS отправлено",
+//                                    Toast.LENGTH_LONG).show();
+//                        }
+//                    });
+//                    builder.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                        }
+//                    });
+//                    builder.setCancelable(true);
+//                    builder.create();
                 }
             });
         }
         return mView;
     }
+
 }

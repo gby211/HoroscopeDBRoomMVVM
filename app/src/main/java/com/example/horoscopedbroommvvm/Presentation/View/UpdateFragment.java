@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -36,9 +37,10 @@ public class UpdateFragment extends Fragment {
     FloatingActionButton fab;
     ImageButton bck;
     private LocalDateTime time;
-    EditText editTextDate,editTextZodiac, editTextInfo,editTextFullInfo;
-    int id;
-    String inf, date, zod,fullInf;
+    EditText editTextDate, editTextInfo, editTextFullInfo;
+    Spinner editTextZodiac;
+    int id, idZodiacSpinner = 0;
+    String inf, date, fullInf, zod;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,13 +59,13 @@ public class UpdateFragment extends Fragment {
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_update, container, false);
 
+        Log.d("tag", "onCreateView: "+ getArguments().toString());
         id = getArguments().getInt("id");
         zod = getArguments().getString("zod");
         inf = getArguments().getString("inf");
         date = getArguments().getString("date");
-        fullInf = getArguments().getString("fullInf");
-
-
+        fullInf = getArguments().getString("ful");
+        Log.d("tag", "onCreateView  ful inf :  " + fullInf);
 
 
         bck = mView.findViewById(R.id.back_button1);
@@ -77,28 +79,40 @@ public class UpdateFragment extends Fragment {
             public void onClick(View view) {
                 final Calendar calendar = Calendar.getInstance();
 
-                DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        calendar.set(Calendar.YEAR, year);
-                        calendar.set(Calendar.MONTH, month);
-                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                DatePickerDialog.OnDateSetListener dateSetListener =
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month,
+                                                  int dayOfMonth) {
+                                calendar.set(Calendar.YEAR, year);
+                                calendar.set(Calendar.MONTH, month);
+                                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-                        time = LocalDateTime.ofInstant(calendar.toInstant(), calendar.getTimeZone().toZoneId());
-                        editTextDate.setText(time.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-                    }
-                };
+                                time = LocalDateTime.ofInstant(calendar.toInstant(),
+                                        calendar.getTimeZone().toZoneId());
+                                editTextDate.setText(time.format(DateTimeFormatter.ofPattern("dd" +
+                                        ".MM.yyyy")));
+                            }
+                        };
 
-                new DatePickerDialog(getActivity(), dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(getActivity(), dateSetListener, calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
 
             }
         });
 
         editTextZodiac = mView.findViewById(R.id.editTextTextPersonName21);
-        editTextZodiac.setText(zod);
+        String[] zodiacsString = getResources().getStringArray(R.array.zodiacNames);
+        for (int i = 0; i < zodiacsString.length; i++) {
+            if (zodiacsString[i].equals(zod)) {
+                idZodiacSpinner = i;
+                break;
+            }
+        }
+        editTextZodiac.setSelection(idZodiacSpinner);
         editTextInfo = mView.findViewById(R.id.editTextTextPersonName31);
         editTextInfo.setText(inf);
-        editTextFullInfo = mView.findViewById(R.id.textViewMaxInfo_info);
+        editTextFullInfo = mView.findViewById(R.id.editTextTextPersonName41);
         try {
             editTextFullInfo.setText(fullInf);
         } catch (Exception e) {
@@ -112,27 +126,35 @@ public class UpdateFragment extends Fragment {
             }
         });
 
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!editTextDate.getText().toString().isEmpty() & !editTextZodiac.getText().toString().isEmpty() & !editTextInfo.getText().toString().isEmpty()) {
-                    mViewModel.update1(
-                            id,
-                            editTextDate.getText().toString(),
-                            editTextZodiac.getText().toString(),
-                            editTextInfo.getText().toString(),
-                            editTextFullInfo.getText().toString()
-                    );
-                    Navigation.findNavController(v).popBackStack();
-                } else {
+                try {
+                    if (!editTextDate.getText().toString().isEmpty()
+                            & !editTextZodiac.getSelectedItem().toString().isEmpty()
+                            & !editTextInfo.getText().toString().isEmpty()
+                            & !editTextFullInfo.getText().toString().isEmpty()) {
+                        mViewModel.update1(
+                                id,
+                                editTextDate.getText().toString(),
+                                editTextZodiac.getSelectedItem().toString(),
+                                editTextInfo.getText().toString(),
+                                editTextFullInfo.getText().toString()
+                        );
+                        Navigation.findNavController(v).popBackStack();
+                    } else {
+                        Toast.makeText(getContext(), "Вы ввели не все данные", Toast.LENGTH_SHORT).show();
+                    }
+                }catch (NullPointerException e){
                     Toast.makeText(getContext(), "Вы ввели не все данные", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+
         return mView;
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,9 +85,12 @@ public class HoroscopeListFragment extends Fragment {
                         ((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getInfo());
                 bundle.putString("date",
                         ((HoroscopeRVAdapter) recyclerView1.getAdapter()).getData().get(position).getDate());
-                bundle.putString("fullInf",
+                bundle.putString("ful",
                         ((HoroscopeRVAdapter) recyclerView1.getAdapter())
                                 .getFullinfoStr(position));
+                Log.d("tag", "onSwiped: "+ ((HoroscopeRVAdapter) recyclerView1.getAdapter())
+                        .getFullinfoStr(position));
+                Log.d("tag", "onSwiped: "+ bundle.toString());
                 navController.navigate(R.id.action_horoscopeList_to_updateFragment, bundle);
             }
         }).attachToRecyclerView(recyclerView1);
