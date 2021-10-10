@@ -8,7 +8,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.horoscopedbroommvvm.Presentation.Model.HoroscopeDTO;
+import com.example.horoscopedbroommvvm.Presentation.Repository.Network.RetrofitClass;
 import com.example.horoscopedbroommvvm.Presentation.Room.HoroscopeRepository;
+import com.example.horoscopedbroommvvm.R;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class HoroscopeViewModel extends AndroidViewModel {
 
     private final LiveData<List<HoroscopeDTO>> mAllData;
     HoroscopeDTO mData;
+    RetrofitClass retrofitClass = new RetrofitClass();
     public HoroscopeViewModel(Application application) {
         super(application);
         mHoroscopeRepository = new HoroscopeRepository(application);
@@ -62,4 +65,6 @@ public class HoroscopeViewModel extends AndroidViewModel {
         DTO.setFullInfo(fullInfo);
         update(DTO);
     }
+
+    public LiveData<String> getPogoda() {return retrofitClass.getPogoda();}
 }

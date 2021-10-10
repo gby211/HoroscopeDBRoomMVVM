@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +23,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.horoscopedbroommvvm.MainActivity;
 import com.example.horoscopedbroommvvm.Presentation.Model.HoroscopeDTO;
+import com.example.horoscopedbroommvvm.Presentation.Repository.Network.RetrofitClass;
 import com.example.horoscopedbroommvvm.Presentation.ViewModel.HoroscopeViewModel;
 import com.example.horoscopedbroommvvm.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -53,7 +56,9 @@ public class HoroscopeInfoFragment extends Fragment {
     String date, info, zodiac;
     TextView tvdate, tvinfo, tvzodiac,tvfullinfo;
     FloatingActionButton fab;
+    ProgressBar progressBar;
     int id;
+    RetrofitClass retrofitClass;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,7 +88,7 @@ public class HoroscopeInfoFragment extends Fragment {
                             tvdate.setText(horoscopeDTO.getDate());
                             tvinfo.setText(horoscopeDTO.getInfo());
                             tvzodiac.setText(horoscopeDTO.getZodiac());
-                            tvfullinfo.setText(horoscopeDTO.getFullInfo());
+//                            tvfullinfo.setText(horoscopeDTO.getFullInfo());
                             fab.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -96,6 +101,33 @@ public class HoroscopeInfoFragment extends Fragment {
                                 }
                             });
                         });
+//        retrofitClass = new RetrofitClass();
+        mViewModel.getPogoda().observe(this, new Observer<String>() {
+
+            @Override
+            public void onChanged(String s) {
+                progressBar.setVisibility(View.GONE);
+                float superFormula = Float.parseFloat(s);
+                String message = "";
+                if (superFormula==0){
+                    message = "У вас будет великолепный день!";
+                }else if (superFormula < 0.2){
+                    message = "День будет хороший";
+                }else if (superFormula < 0.5){
+                    message = "День пройдёт как обычно";
+                }else if (superFormula < 0.75){
+                    message = "Лучше в этот день не принимать серьёзных решений";
+                }else if (superFormula < 0.99){
+                    message = "Это будет ужасный день";
+                }else if (superFormula >= 0.99){
+                    message = "Самый плохой день в жизни , мб и последный";
+                }else {
+                    message = "Судьба неизвестна";
+                }
+                tvfullinfo.setText(message);
+                tvfullinfo.setVisibility(View.VISIBLE);
+            }
+        });
 
 
         ((MainActivity) getActivity()).findViewById(R.id.share_button).setOnClickListener((View v) -> {
@@ -107,7 +139,6 @@ public class HoroscopeInfoFragment extends Fragment {
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
         });
-
     }
 
 
@@ -122,6 +153,8 @@ public class HoroscopeInfoFragment extends Fragment {
         fab = mView.findViewById(R.id.floatingActionButton);
         bck = mView.findViewById(R.id.back_button);
         tvfullinfo = mView.findViewById(R.id.textViewMaxInfo_info);
+        tvfullinfo.setVisibility(View.INVISIBLE);
+        progressBar = mView.findViewById(R.id.progressBar);
 
         bck.setOnClickListener(new View.OnClickListener() {
             @Override

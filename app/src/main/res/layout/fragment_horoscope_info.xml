@@ -101,6 +101,8 @@
                 android:text="Date"
                 android:textSize="23sp" />
 
+
+
             <TextView
                 android:id="@+id/textViewMiniInfo_info"
                 android:layout_width="match_parent"
@@ -110,6 +112,11 @@
                 android:layout_marginBottom="16dp"
                 android:text="MinInfowrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_contentwrap_content"
                 android:textSize="20sp" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textViewMaxInfo_info"
