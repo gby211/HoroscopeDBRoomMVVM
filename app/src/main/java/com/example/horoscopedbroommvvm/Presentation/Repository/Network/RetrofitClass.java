@@ -37,7 +37,7 @@ public class RetrofitClass {
                     MyPojo myPojo = response.body();
                     Hourly hourly = myPojo.getHourly()[0];
                     float temp = Float.parseFloat(hourly.getTemp());
-                    temp = temp - 273;
+                    temp = temp - 273;ф
                     float clouds = Integer.parseInt(hourly.getClouds());
                     Weather weather = hourly.getWeather()[0];
                     String infoPogoda = weather.getMain();
