@@ -15,7 +15,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClass {
-
     private PogodaApi api;
 
     public RetrofitClass() {
@@ -37,28 +36,23 @@ public class RetrofitClass {
                     MyPojo myPojo = response.body();
                     Hourly hourly = myPojo.getHourly()[0];
                     float temp = Float.parseFloat(hourly.getTemp());
-                    temp = temp - 273;ф
+                    temp = temp - 273;
                     float clouds = Integer.parseInt(hourly.getClouds());
                     Weather weather = hourly.getWeather()[0];
                     String infoPogoda = weather.getMain();
                     String pressure = hourly.getPressure();
                     float pressureInt = Integer.parseInt(pressure);
-
-
                     float superFormulaInt = Math.abs((Math.abs((pressureInt-1025)/100)) - (clouds/100));
-
                     String superFormula = String.valueOf(superFormulaInt);
                     pogoda.setValue(superFormula);
                 }
             }
-
             @Override
             public void onFailure(Call<MyPojo> call, Throwable t) {
                 Log.e("ggssss", t.toString()+ call);
                 Log.d("ggssss","123");
             }
         });
-
         return pogoda;
     }
 
