@@ -62,6 +62,7 @@ public class HoroscopeViewModel extends AndroidViewModel {
         DTO.setDate(date);
         DTO.setZodiac(zodiac);
         DTO.setInfo(info);
+
         DTO.setFullInfo(fullInfo);
         update(DTO);
     }
