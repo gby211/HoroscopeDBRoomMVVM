@@ -7,12 +7,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.horoscopedbroommvvm.Presentation.Model.HoroscopeDTO;
+import com.example.horoscopedbroommvvm.Presentation.Model.ProfileDTO;
 import com.example.horoscopedbroommvvm.Presentation.Room.DAO.HoroscopeDAO;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {HoroscopeDTO.class}, version = 1, exportSchema = false)
+@Database(entities = {HoroscopeDTO.class, ProfileDTO.class}, version = 1, exportSchema = false)
 public abstract class HoroscopeDatabase extends RoomDatabase {
 
     public abstract HoroscopeDAO horoscopeDAO();

@@ -10,6 +10,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.horoscopedbroommvvm.Presentation.Model.HoroscopeDTO;
+import com.example.horoscopedbroommvvm.Presentation.Model.ProfileDTO;
 
 import java.util.List;
 
@@ -18,6 +19,9 @@ public interface HoroscopeDAO {
 
     @Insert
     void addInfo(HoroscopeDTO info);
+
+    @Insert
+    void addProfile(ProfileDTO info);
 
     @Delete
     void deleteInfo(HoroscopeDTO info);
@@ -30,4 +34,10 @@ public interface HoroscopeDAO {
 
     @Query("SELECT * FROM myTable WHERE id = :id")
     LiveData<HoroscopeDTO> getById(int id);
+
+    @Query("SELECT * FROM profileTable")
+    LiveData<List<ProfileDTO>> getAllProfile();
+
+    @Query("SELECT * FROM profileTable WHERE email = :email AND password = :password")
+    LiveData<ProfileDTO> getProfile(String email, String password);
 }
