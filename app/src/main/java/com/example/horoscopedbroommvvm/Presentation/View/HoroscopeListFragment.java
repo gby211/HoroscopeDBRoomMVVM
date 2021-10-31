@@ -50,7 +50,16 @@ public class HoroscopeListFragment extends Fragment {
         recyclerView1 = mView.findViewById(R.id.HoroscopeRecyclerView);
         fab = mView.findViewById(R.id.fab);
 
-        fab.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_horoscopeList_to_addHoroscopeData));
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (role == 1){
+                    Navigation.findNavController(mView).navigate(R.id.action_horoscopeList_to_addHoroscopeData);
+                }else {
+                    createAlertDialog1();
+                }
+            }
+        });
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {

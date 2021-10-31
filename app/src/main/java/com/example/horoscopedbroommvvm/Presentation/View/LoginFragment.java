@@ -128,14 +128,25 @@ public class LoginFragment extends Fragment {
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
+            String personEmail = null;
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
             if (acct != null) {
-                String personEmail = acct.getEmail();
-                mViewModel.insertProfile1(personEmail,null);
+                personEmail = acct.getEmail();
+                mViewModel.insertProfile1(personEmail,"admin");
             }
-
-            Navigation.findNavController(mView).navigate(R.id.action_loginFragment_to_horoscopeList);
+            mViewModel.getProfile(personEmail,"admin").observe(getViewLifecycleOwner(),
+                    (ProfileDTO profileDTO) -> {
+                        if (profileDTO != null) {
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("role",profileDTO.getRole());
+                            Log.d("ggsss", String.valueOf(profileDTO.getRole()));
+                            Navigation.findNavController(mView).navigate(R.id.action_loginFragment_to_horoscopeList,bundle);
+                        }else {
+                            Toast.makeText(getContext(), "Данные не записаны.\nПовторите попытку",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.

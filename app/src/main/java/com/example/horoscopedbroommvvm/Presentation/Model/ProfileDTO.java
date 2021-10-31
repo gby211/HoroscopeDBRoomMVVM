@@ -8,11 +8,9 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "profileTable")
 public class ProfileDTO {
-    @NonNull
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    public int id;
 
+    @NonNull
+    @PrimaryKey
     public String email;
 
     public String password;
@@ -25,14 +23,6 @@ public class ProfileDTO {
 
     public void setRole(int role) {
         this.role = role;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getEmail() {
