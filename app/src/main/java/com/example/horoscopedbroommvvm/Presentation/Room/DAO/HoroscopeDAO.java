@@ -20,7 +20,7 @@ public interface HoroscopeDAO {
     @Insert
     void addInfo(HoroscopeDTO info);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void addProfile(ProfileDTO info);
 
     @Delete

@@ -1,6 +1,7 @@
 package com.example.horoscopedbroommvvm.Presentation.View;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -128,6 +129,12 @@ public class LoginFragment extends Fragment {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
+            if (acct != null) {
+                String personEmail = acct.getEmail();
+                mViewModel.insertProfile1(personEmail,null);
+            }
+
             Navigation.findNavController(mView).navigate(R.id.action_loginFragment_to_horoscopeList);
 
         } catch (ApiException e) {
