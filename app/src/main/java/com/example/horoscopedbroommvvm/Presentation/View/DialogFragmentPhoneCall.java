@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.horoscopedbroommvvm.MainActivity;
+
 public class DialogFragmentPhoneCall extends DialogFragment {
     @NonNull
     @Override

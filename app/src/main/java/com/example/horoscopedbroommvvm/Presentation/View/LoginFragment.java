@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,13 @@ import com.example.horoscopedbroommvvm.Presentation.Model.HoroscopeDTO;
 import com.example.horoscopedbroommvvm.Presentation.Model.ProfileDTO;
 import com.example.horoscopedbroommvvm.Presentation.ViewModel.HoroscopeViewModel;
 import com.example.horoscopedbroommvvm.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 
 public class LoginFragment extends Fragment {
@@ -29,6 +37,8 @@ public class LoginFragment extends Fragment {
     HoroscopeViewModel mViewModel;
     EditText edEmail, edPassword;
     SignInButton signInButton;
+    GoogleSignInClient mGoogleSignInClient;
+    int RC_SIGN_IN = 100;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +66,18 @@ public class LoginFragment extends Fragment {
 
 
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+
 
 
         btn_enter.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +88,10 @@ public class LoginFragment extends Fragment {
                             edPassword.getText().toString()).observe(getViewLifecycleOwner(),
                             (ProfileDTO profileDTO) -> {
                                 if (profileDTO != null) {
-                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_horoscopeList);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putInt("role",profileDTO.getRole());
+                                    Log.d("ggsss", String.valueOf(profileDTO.getRole()));
+                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_horoscopeList,bundle);
                                 }else {
                                     Toast.makeText(getContext(), "Пароль или логин неправилен",
                                             Toast.LENGTH_SHORT).show();
@@ -86,4 +111,31 @@ public class LoginFragment extends Fragment {
 
         return mView;
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            Navigation.findNavController(mView).navigate(R.id.action_loginFragment_to_horoscopeList);
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("handleSignInResult", "signInResult:failed code=" + e.getStatusCode());
+            Toast.makeText(getContext(), "Регистрация не прошла", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
